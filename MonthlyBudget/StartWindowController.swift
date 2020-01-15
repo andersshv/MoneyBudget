@@ -28,6 +28,7 @@ class StartWindowController: UIViewController {
         UserDefaults.standard.set(MonthlyBudgetInputField.text, forKey: "MonthlyBudget")
         MonthlyBudgetInputField.text = ""
         showMonthlyBudget()
+        showAvailableRestMonth()
     }
     
     func showMonthlyBudget() {
@@ -39,10 +40,22 @@ class StartWindowController: UIViewController {
     }
     
     func showAvailableRestMonth() {
-        let calendar = Calendar.current
         let date = Date()
-        let t = date.description(with: nil)
+        let month = getMonthFromDate(date: date)
+        let year = getYearFromDate(date: date)
+        let days = getNumberOfDaysInMonth(year: year, month: month);
+        let day = getDayFromDate(date: date)
+        let daysRemaining = days - Int(day)! + 1
         
+        if let mb = UserDefaults.standard.string(forKey: "MonthlyBudget") {
+            let usedSoFar = getUsedSoFarThisMonth()
+            let remainingMoney = Int(mb)! - usedSoFar
+            let remainingMoneyPrDay = remainingMoney / daysRemaining
+            let remToInt = Int(remainingMoneyPrDay)
+            AvailRestMonth.text = String(remToInt)
+        } else {
+            return
+        }
     }
     
 }
