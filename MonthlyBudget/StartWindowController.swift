@@ -14,6 +14,9 @@ class StartWindowController: UIViewController {
     @IBOutlet weak var MonthlyBudgetInputField: UITextField!
     
     @IBOutlet weak var AvailRestMonth: UILabel!
+        
+    @IBOutlet weak var NewPostingText: UITextField!    
+    @IBOutlet weak var NewPostingAmount: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +59,11 @@ class StartWindowController: UIViewController {
         } else {
             return
         }
+    }
+
+    @IBAction func monthlyBudgetSubmitClicked(_ sender: Any) {
+        var text = NewPostingText.text
+        var amount = NewPostingAmount.text
     }
     
 }
