@@ -52,5 +52,9 @@ class MainController: UIViewController {
         updateGUI()
     }
     
+    @IBAction func resetButtonClicked(_ sender: Any) {
+        clearMonth();
+        updateGUI()
+    }
 }
 
